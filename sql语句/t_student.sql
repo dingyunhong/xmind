@@ -25,7 +25,7 @@ CREATE TABLE `t_student` (
   `sname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `sex` char(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `borthday` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `classes` varchar(20) DEFAULT NULL,
+  `classes` varchar(20) NOT NULL,
   `remark` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `sid` (`sid`)
@@ -40,5 +40,5 @@ INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `sex`, `borthday`, `
 INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `sex`, `borthday`, `classes`, `remark`) VALUES ('6', 's006', '杨超越', '女', '1995-09-09', 'T233', NULL);
 INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `sex`, `borthday`, `classes`, `remark`) VALUES ('7', 's007', '杨紫', '女', '1996-09-09', 'T233', NULL);
 INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `sex`, `borthday`, `classes`, `remark`) VALUES ('8', 's008', '张一山', '男', '1996-08-08', 'T233', NULL);
-
+INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `sex`, `borthday`, `classes`, `remark`) VALUES ('9', 's008', '吴磊', '男', '1997-06-08', 'T233', NULL);
 
