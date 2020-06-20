@@ -1,0 +1,78 @@
+# 01）查询" 01 "课程比" 02 "课程成绩高的学生的信息及课程分数
+SELECT s.*,tmp.s1,tmp.s2 from 
+(
+select t1.sid ,t1.s1,t2.s2 from 
+(SELECT sid ,score as s1 from t_score where cid = '01') t1,
+(SELECT sid ,score as s2 from t_score where cid = '02') t2
+where t1.sid=t2.sid and t1.s1>t2.s2 ) tmp,t_student s 
+where tmp.sid = s.sid;
+
+
+# 02）查询同时存在" 01 "课程和" 02 "课程的情况
+select t1.sid ,t1.s1,t2.s2 from 
+(SELECT sid ,score as s1 from t_score where cid = '01') t1,
+(SELECT sid ,score as s2 from t_score where cid = '02') t2
+where t1.sid=t2.sid;
+
+
+# 03）查询存在" 01 "课程但可能不存在" 02 "课程的情况(不存在时显示为 null )
+select t1.sid ,t1.s1,t2.s2 from 
+(SELECT sid ,score as s1 from t_score where cid = '01') t1 LEFT JOIN 
+(SELECT sid ,score as s2 from t_score where cid = '02') t2
+on t1.sid=t2.sid;
+
+# 04）查询不存在" 01 "课程但存在" 02 "课程的情况
+select * from t_score where sid NOT in (
+SELECT sid from t_score where cid = '01') and cid = '02';
+
+
+# 05）查询平均成绩大于等于 60 分的同学的学生编号和学生姓名和平均成绩
+SELECT s.sid,s.sname,ROUND(avg(sc.score),2) as 平均分 FROM t_score sc,t_student s where sc.sid = s.sid GROUP BY s.sid,s.sname HAVING avg(sc.score) >=60;
+
+# 06）查询在t_score表存在成绩的学生信息
+SELECT s.sid,s.sname from t_score sc,t_student s where sc.sid = s.sid GROUP BY s.sid,s.sname;
+
+# 07）查询所有同学的学生编号、学生姓名、选课总数、所有课程的总成绩(没成绩的显示为 null )
+SELECT s.sid,s.sname,count(sc.cid) ,SUM(sc.score)from t_student s LEFT JOIN t_score sc on s.sid=sc.sid GROUP BY s.sid,s.sname;
+
+# 08）查询「李」姓老师的数量
+SELECT count(0) from t_teacher where tname like '李%';
+
+# 09）查询学过「张三」老师授课的同学的信息
+SELECT s.sid,s.sname from t_teacher t ,t_student s,t_score sc,t_course c where t.tid = c.tid and s.sid = sc.sid and c.cid = sc.cid and t.tname ='张三';
+
+# 10）查询没有学全所有课程的同学的信息
+SELECT s.* from t_student s where s.sid not in
+(
+SELECT sid ,count(cid)FROM t_score GROUP BY sid 
+HAVING count(cid) = (SELECT count(0) from t_course)); # 推演过程 ，运行会报错 ，下面才是正确的sql
+
+SELECT s.* from t_student s where s.sid not in
+(
+SELECT sid FROM t_score GROUP BY sid 
+HAVING count(cid) = (SELECT count(0) from t_course));
+
+# 11）查询没学过"张三"老师讲授的任一门课程的学生姓名
+SELECT * from t_student where sid not in (
+SELECT sc.sid from t_teacher t,t_course c, t_score sc where t.tid = c.tid and c.cid =sc.cid and t.tname='张三');
+
+
+# 12）查询两门及其以上不及格课程的同学的学号，姓名及其平均成绩
+SELECT s.sid,s.sname,ROUND(avg(sc.score) ,2)from t_student s ,t_score sc 
+where s.sid = sc.sid and sc.score <60 GROUP BY s.sid,s.sname HAVING count(sc.sid)>1;
+
+# 13）检索" 01 "课程分数小于 60，按分数降序排列的学生信息
+SELECT s.* from t_student s ,t_score sc where s.sid = sc.sid and sc.cid='01' and sc.score <60
+GROUP BY s.sid,s.sname,s.borthday,s.sex ORDER BY sc.score desc;
+
+
+SELECT s.* ,GROUP_CONCAT(sc.score)from t_student s ,t_score sc where s.sid = sc.sid  and sc.score <60
+GROUP BY s.sid,s.sname,s.borthday,s.sex ORDER BY sc.score desc; # 给学生演示GROUP_CONCAT的作用，上面的sql才是题目的答案
+
+
+# 14）按平均成绩从高到低显示所有学生的所有课程的成绩以及平均成绩
+
+# 15）查询各科成绩最高分、最低分和平均分：
+
+# 以如下形式显示：课程 ID，课程 name，最高分，最低分，平均分，及格率，中等率，优良率，优秀率及格为>=60，中等为：70-80，优良为：80-90，优秀为：>=90
+# 要求输出课程号和选修人数，查询结果按人数降序排列，若人数相同，按课程号升序排列

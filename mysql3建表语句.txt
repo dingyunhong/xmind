@@ -1,0 +1,29 @@
+CREATE TABLE t_student(
+	sid VARCHAR(10) NOT NULL PRIMARY key COMMENT '学号',
+	sname VARCHAR(50) NOT NULL COMMENT '姓名',
+	borthday VARCHAR(20) NOT NULL COMMENT '出生日期',
+  sex CHAR(2) NOT NULL DEFAULT '男' COMMENT '性别：默认男'
+)COMMENT '学生信息表';
+
+
+
+CREATE TABLE t_teacher(
+	tid VARCHAR(10) NOT NULL PRIMARY key COMMENT '老师编号',
+	tname VARCHAR(50) NOT NULL COMMENT '老师姓名'
+)COMMENT '教师信息表';
+
+CREATE TABLE t_course(
+	cid VARCHAR(10) NOT NULL PRIMARY key COMMENT '课程编号',
+	cname VARCHAR(50) NOT NULL COMMENT '课程名称',
+  tid VARCHAR(10) NOT NULL COMMENT '老师编号,外键',
+  FOREIGN KEY(tid) REFERENCES t_teacher(tid)
+)COMMENT '课程信息表';
+
+CREATE TABLE t_score(
+  id int auto_increment PRIMARY key COMMENT '主键，唯一标识',
+  sid VARCHAR(10) NOT NULL COMMENT '学号',
+	cid VARCHAR(10) NOT NULL COMMENT '课程编号',
+	score FLOAT NOT NULL COMMENT '课程名称',
+  FOREIGN KEY(sid) REFERENCES t_student(sid),
+  FOREIGN KEY(cid) REFERENCES t_course(cid)
+)COMMENT '成绩信息表';
