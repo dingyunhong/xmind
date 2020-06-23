@@ -71,8 +71,30 @@ GROUP BY s.sid,s.sname,s.borthday,s.sex ORDER BY sc.score desc; # 给学生演示GROU
 
 
 # 14）按平均成绩从高到低显示所有学生的所有课程的成绩以及平均成绩
+SELECT s.sid ,s.sname,
+SUM(CASE WHEN sc.sid='01' THEN sc.score ELSE 0 END) as '语文',
+SUM(CASE WHEN sc.sid='02' THEN sc.score ELSE 0 END) as '数学',
+SUM(CASE WHEN sc.sid='03' THEN sc.score ELSE 0 END) as '英语',
+AVG(sc.score) as '平均成绩',
+GROUP_CONCAT(sc.score) as '课程成绩'
+from t_score sc,t_student s
+where sc.sid =s.sid
+GROUP BY s.sid, s.sname;
+
 
 # 15）查询各科成绩最高分、最低分和平均分：
-
+SELECT 
+c.cid as '课程编号',
+c.cname as '课程名称',
+MAX(sc.score) as '最高分',
+MIN(sc.score) as '最低分',
+AVG(sc.score) as '平均分',
+SUM(CASE WHEN sc.score>=60 THEN 1 ELSE 0 END)/COUNT(sc.cid) as '及格率',
+SUM(CASE WHEN sc.score>=70 AND sc.score<80 THEN 1 ELSE 0 END)/COUNT(sc.cid) as '中等率',
+SUM(CASE WHEN sc.score>=80 AND sc.score<90 THEN 1 ELSE 0 END)/COUNT(sc.cid) as '优良率',
+SUM(CASE WHEN sc.score>=90 THEN 1 ELSE 0 END)/COUNT(sc.cid) as '优秀率'
+from t_score sc , t_course c where sc.cid = c.cid
+GROUP BY c.cid,c.cname
+ORDER BY COUNT(sc.cid) desc, sc.sid asc;
 # 以如下形式显示：课程 ID，课程 name，最高分，最低分，平均分，及格率，中等率，优良率，优秀率及格为>=60，中等为：70-80，优良为：80-90，优秀为：>=90
 # 要求输出课程号和选修人数，查询结果按人数降序排列，若人数相同，按课程号升序排列
