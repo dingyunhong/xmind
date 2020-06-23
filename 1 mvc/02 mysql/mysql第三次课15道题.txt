@@ -67,10 +67,10 @@ GROUP BY s.sid,s.sname,s.borthday,s.sex ORDER BY sc.score desc;
 
 
 SELECT s.* ,GROUP_CONCAT(sc.score)from t_student s ,t_score sc where s.sid = sc.sid  and sc.score <60
-GROUP BY s.sid,s.sname,s.borthday,s.sex ORDER BY sc.score desc; # 给学生演示GROUP_CONCAT的作用，上面的sql才是题目的答案
+GROUP BY s.sid,s.sname,s.borthday,s.sex ORDER BY sc.score desc; # 演示GROUP_CONCAT的作用，上面的sql才是题目的答案
 
 
-# 14）按平均成绩从高到低显示所有学生的所有课程的成绩以及平均成绩
+# 14）按平均成绩从高到低显示所有学生的所有课程的成绩以及平均成绩(行转列)
 SELECT s.sid ,s.sname,
 SUM(CASE WHEN sc.sid='01' THEN sc.score ELSE 0 END) as '语文',
 SUM(CASE WHEN sc.sid='02' THEN sc.score ELSE 0 END) as '数学',
