@@ -7,3 +7,11 @@ INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `borthday`, `classes
 INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `borthday`, `classes`, `remark`) VALUES ('7', 's007', '杨紫',  '1996-09-09', 'T233', NULL);
 INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `borthday`, `classes`, `remark`) VALUES ('8', 's008', '张一山',  '1996-08-08', 'T233', NULL);
 INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `borthday`, `classes`, `remark`) VALUES ('9', 's008', '吴磊',  '1997-06-08', 'T233', NULL);
+
+
+create table t_account2 (
+	userid char(5),
+	username varchar(20),
+	password varchar(20),
+    primary key(userid)
+);
