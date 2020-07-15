@@ -1,0 +1,9 @@
+INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `borthday`, `classes`, `remark`) VALUES ('1', 's001', '鹿晗',  '1994-09-09', 'T231', NULL);
+INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `borthday`, `classes`, `remark`) VALUES ('2', 's002', '吴亦凡',  '1995-09-09', 'T231', NULL);
+INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `borthday`, `classes`, `remark`) VALUES ('3', 's003', '黄子韬',  '1996-09-09', 'T231', NULL);
+INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `borthday`, `classes`, `remark`) VALUES ('4', 's004', '关晓彤',  '1996-08-08', 'T231', NULL);
+INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `borthday`, `classes`, `remark`) VALUES ('5', 's005', '虞书欣',  '1994-09-09', 'T233', NULL);
+INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `borthday`, `classes`, `remark`) VALUES ('6', 's006', '杨超越',  '1995-09-09', 'T233', NULL);
+INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `borthday`, `classes`, `remark`) VALUES ('7', 's007', '杨紫',  '1996-09-09', 'T233', NULL);
+INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `borthday`, `classes`, `remark`) VALUES ('8', 's008', '张一山',  '1996-08-08', 'T233', NULL);
+INSERT INTO `mydatabase`.`t_student` (`id`, `sid`, `sname`, `borthday`, `classes`, `remark`) VALUES ('9', 's008', '吴磊',  '1997-06-08', 'T233', NULL);
