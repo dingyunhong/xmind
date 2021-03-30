@@ -1,0 +1,31 @@
+1.jemeter安装
+	下载：http://archive.apache.org/dist/jmeter/binaries/
+	安装教程：https://www.cnblogs.com/liulinghua90/p/4667923.html
+
+2.jemeter使用
+	1.添加线程组
+	
+	2.配置元件-->http请求默认值
+		协议：http   服务器名称或ip：test.lemonban.com
+		
+	3.sample-->http请求
+		注册接口
+			http://test.lemonban.com/futureloan/mvc/api/member/register
+			
+			参数：
+			mobilephone  pwd
+			
+		登录接口
+			http://test.lemonban.com/futureloan/mvc/api/member/login
+			
+			参数：
+			mobilephone  pwd
+			
+		充值接口
+			http://test.lemonban.com/futureloan/mvc/api/member/recharge
+			
+			参数：
+			mobilephone  amount（金额）
+			
+	4.监听器-->查看结果树
+	
