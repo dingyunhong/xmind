@@ -1,8 +1,8 @@
-1.jemeter安装
+1.jmeter安装
 	下载：http://archive.apache.org/dist/jmeter/binaries/
 	安装教程：https://www.cnblogs.com/liulinghua90/p/4667923.html
 
-2.jemeter使用
+2.jmeter基本使用
 	1.添加线程组
 	
 	2.配置元件-->http请求默认值
@@ -30,4 +30,61 @@
 			mobilephone  amount（金额）
 			
 	4.监听器-->查看结果树
+	
+
+3.jmeter完成接口参数化参数
+	前提：唯一 且 必填的参数
+	
+	比如：上面案例中的手机号
+	
+	方式一：函数助手对话框
+		1.选项-->函数助手对话框-->选择一个功能-->_RandomString
+			Random string length                             2
+			Chars to use for random string generation        0123456789
+			
+			把生成的随机树替换手机号后两位：得到186888899${__RandomString(2,0123456789,)}
+		
+		2.线程组
+			线程属性：
+				线程数   1
+				每秒发送请求次数  1
+				循环次数 5
+				
+		清除原来的请求：扫把按钮
+	
+	方式二：csv
+		1.新建手机号文本  eg：abc.txt
+		2.线程组-->配置元件-->csv data set config -->browse  选择刚新建的文件
+			Variable names  tel（手机号的意思）
+		3.接口地址的参数  
+			${tel}
+			
+			
+5.接口串联自动化
+	线程组-->添加配置原件-->http cookies 管理器
+	
+6.jmeter存储测试结果
+	线程组-->监听器-->保存响应到文件
+	文件名称前缀：D:\test_
+	文件名：
+	
+	只保留失败的
+	只保留成功的
+	不加前缀
+	不加后缀
+	只保留时间戳
+	
+	每条测试写到一个文件中，不太方便
+	
+7.jmeter写回测试结果到excel
+	1.坏境准备
+	2.测试数据结构准备
+	3.写入结果到excel代码准备
+	4.jmeter写入结果到excel
+	
+	
+	
+		
+		
+	
 	
