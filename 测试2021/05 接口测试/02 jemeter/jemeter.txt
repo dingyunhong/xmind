@@ -12,8 +12,10 @@
 		注册接口
 			http://test.lemonban.com/futureloan/mvc/api/member/register
 			
-			参数：
+			参数： 
 			mobilephone  pwd
+			
+			请求方式：get
 			
 		登录接口
 			http://test.lemonban.com/futureloan/mvc/api/member/login
