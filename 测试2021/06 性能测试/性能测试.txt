@@ -1,0 +1,8 @@
+
+
+win10安装loadrunner11教程：
+https://www.jianshu.com/p/63ccfcc7776f
+
+loadrunner 内置飞机订票系统
+http://127.0.0.1:1080/webtours/
+
