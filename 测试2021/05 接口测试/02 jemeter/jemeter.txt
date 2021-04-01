@@ -53,7 +53,7 @@
 		清除原来的请求：扫把按钮
 	
 	方式二：csv
-		1.新建手机号文本  eg：abc.txt
+		1.新建手机号文本  eg：tel.txt
 		2.线程组-->配置元件-->csv data set config -->browse  选择刚新建的文件
 			Variable names  tel（手机号的意思）
 		3.接口地址的参数  
